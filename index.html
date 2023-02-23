@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal protfilo Website</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'Courier New', Courier, monospace;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #2f2d2d;
+            color: #fff;
+
+        }
+
+        #header {
+            width: 100%;
+            height: 100vh;
+            background-image: url(images/bg5.gif);
+            background-size: cover;
+            background-position: center;
+        }
+
+        .container {
+            padding: 10px 10%;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            width: 160px;
+
+        }
+
+        nav ul li {
+            display: inline-block;
+            list-style: none;
+            margin: 10px 20px;
+
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 15px;
+            position: relative;
+        }
+
+        nav ul li a::after {
+            content: '';
+            width: 0;
+            height: 3px;
+            background: #ff004f;
+            position: absolute;
+            left: 0;
+            bottom: -6px;
+            transition: 0.5s;
+
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .header-text {
+            margin-top: 20%;
+            font-size: 30px;
+
+        }
+
+        .header-text h1 {
+            font-size: 60px;
+            margin-top: 20px;
+        }
+
+        .header-text h1 span {
+            color: #ff004f;
+        }
+
+        #about {
+            padding: 80px 0;
+            color: #fff;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .about-col-1 {
+            flex-basis: 35%;
+        }
+
+        .about-col-1 img {
+            width: 100%;
+            border-radius: 15px;
+        }
+
+        .about-col-2 {
+            flex-basis: 60%;
+        }
+
+        .sub-title {
+            font-size: 60px;
+            font-weight: 600;
+            color: white;
+        }
+
+        .tab-titles {
+            display: flex;
+            margin: 20px 0 40px;
+        }
+
+        .tab-links {
+            margin-right: 50px;
+            font-size: 18px;
+            font-weight: 500;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .tab-links::after {
+            content: '';
+            width: 0;
+            height: 3px;
+            background: #ff004f;
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            transition: 0.5s;
+        }
+
+        .tab-links.active-link::after {
+            width: 50%;
+        }
+
+        .tab-contents ul li {
+            list-style: none;
+            margin: 10px 0;
+
+        }
+
+        .tab-contents ul li span {
+            color: #8d153b;
+            font-size: 14px;
+
+        }
+
+        .tab-contents {
+            display: none;
+        }
+
+        .tab-contents.active-tab {
+            display: block;
+        }
+
+
+
+        #services {
+            padding: 40px;
+        }
+
+        .services-list {
+            display: flex;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-gap: 40px;
+            margin-top: 50px;
+        }
+
+        .services-list div {
+            background: rgb(37, 37, 37);
+            padding: 40px;
+            font-size: 13px;
+            font-weight: 300;
+            border-radius: 10px;
+            transition: background 0.5s, transform 0.5s;
+        }
+
+        .services-list div h2 {
+            font-size: 30px;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .services-list div a {
+            text-decoration: none;
+            color: white;
+            font-size: 12px;
+            margin-top: 10px;
+            display: inline-block;
+        }
+
+        .services-list div:hover {
+            background: #ff004f;
+            transform: translateY(-10px);
+        }
+
+        #protfolio {
+            padding: 50px 0;
+
+        }
+
+        .work-list {
+            display: flex;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-gap: 40px;
+            margin-top: 50px;
+
+        }
+
+        .work {
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+
+        }
+
+        .work img {
+            width: 100%;
+            border-radius: 10px;
+            display: block;
+            transition: transform 0.5s;
+        }
+
+        .layer {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), #ff004f);
+            border-radius: 10px;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 0 40px;
+            text-align: center;
+            font-size: 14px;
+            transition: height 0.5s;
+        }
+
+        .layer h3 {
+            font-weight: 500;
+            margin-bottom: 250px;
+        }
+
+        .work:hover img {
+            transform: scale(1.1);
+        }
+
+        .work:hover .layer {
+            height: 100%;
+
+        }
+
+        .btn {
+            display: block;
+            margin: 50px auto;
+            width: fit-content;
+            border: 1px;
+            border: 1px solid #ff004f;
+            padding: 14px 50px;
+            border-radius: 6px;
+            text-decoration: none;
+            color: white;
+            transition: background 0.5s;
+        }
+
+        .btn:hover {
+            background: #ff004f;
+        }
+
+        .contact-left {
+            flex-basis: 35%;
+
+        }
+
+        .contact-right {
+            flex-basis: 60%;
+        }
+
+        .contact-left p {
+            color: aqua;
+            margin-top: 30px;
+            margin-right: 15px;
+            font-size: 25px;
+
+        }
+
+        .social-icons {
+            font-size: 30px;
+        }
+
+        .social-icons {
+            text-decoration: none;
+
+            margin-right: 15px;
+            color: #bcb9b9;
+            display: inline-block;
+            transition: transform 0.5s;
+        }
+
+        .social-icons a:hover {
+            color: aqua;
+            transform: translateY(-5px);
+        }
+
+        .btn.btn2 {
+            display: inline-block;
+            background: #ff004f;
+        }
+
+        .contact-right form {
+            width: 100%;
+
+        }
+
+        form input,
+        form textarea {
+            width: 100%;
+            border: 0;
+            outline: none;
+            background: #333132;
+            padding: 15px;
+            margin: 15px 0;
+            color: rgb(235, 227, 227);
+            font-size: 18px;
+            border-radius: 6px;
+        }
+
+        form btn2 {
+            padding: 14px 60px;
+            font-size: 18px;
+            margin-top: 20px;
+            cursor: pointer;
+
+        }
+
+        .copyright {
+            width: 100%;
+            text-align: center;
+            padding: 25px 0;
+            background: #262626;
+            font-weight: 300;
+            margin-top: 20px;
+        }
+
+        nav .fa-solid {
+            display: none;
+
+        }
+
+        @media only screen and (max-width:600px) {
+            #header {
+                background-image: url(images/phone-background.png);
+            }
+
+            .header-text {
+                margin-top: 100%;
+                font-size: 16px;
+
+            }
+
+            .header-text h1 {
+                font-size: 30px;
+
+            }
+
+            nav .fa-solid {
+                display: block;
+                font-size: 25px;
+            }
+
+            nav ul {
+                background: #ff004f;
+                position: fixed;
+                top: -200px;
+                right: 200px;
+                width: 200px;
+                height: 100vh;
+                padding-top: 50px;
+
+            }
+
+            nav ul li {
+                display: block;
+                margin: 25px;
+
+            }
+
+            nav ul .fa-solid {
+                position: absolute;
+                top: 25px;
+                left: 25px;
+                cursor: pointer;
+            }
+
+            .sub-title {
+                font-size: 40px;
+
+            }
+
+            .about-col-1,
+            .about-col-2 {
+                flex-basis: 100%;
+            }
+
+            .about-col-1 {
+                margin-bottom: 30px;
+
+            }
+
+            .about-col-2 {
+                font-size: 40px;
+            }
+
+            .tab-links {
+                font-size: 16px;
+                margin-right: 20px;
+
+            }
+
+            .contact-left,
+            .contact-right {
+                flex-basis: 100%;
+            }
+
+            .copyright {
+                font-size: 14px;
+            }
+        }
+
+        #msg {
+            color: #ff004f;
+            margin-top: -40px;
+            display: block;
+        }
+    </style>
+    <script src="https://kit.fontawesome.com/3b855fc4ef.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="header">
+        <div class="container">
+            <nav>
+                <img src="images/logo1.png" class="logo">
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#protfilo">protfilo</a></li>
+                    <li><a href="#contact">contact</a></li>
+                    <i class="fa-solid fa-xmark"></i>
+                </ul>
+                <i class="fa-solid fa-bars"></i>
+            </nav>
+            <div class="header-text">
+                <p>UI/UX Desginers</p>
+                <h1>Hello, <span>we are</span> <br> peaky Blinders</h1>
+            </div>
+        </div>
+
+    </div>
+    <div id="about">
+        <div class="container">
+            <div class="row">
+                <div class="about-col-1">
+                    <img src="images/user4.gif">
+                </div>
+                <div class="about-col-2">
+                    <h1 class="sub-title">About us</h1>
+                    <p>Peaky Blinders was founded in 2023, and we have accomplished so much over the years. To create a world where you get all content for your busness has always been our goal.
+
+                        Our Founders Gopabandhu Gadanayak, Sanjeep Rout and Aniket Giri was inspired to start this company for the upgrowing businesses.
+                        Our skilled in-house team provides website development at affordable price
+                        At Peaky blinders, we encourage our community to grow.</p>
+                    <div class="tab-titles">
+                        <p class="tab-links active-link" onclick="opentab('skills')">Services</p>
+                        <p class="tab-links" onclick="opentab('experience')">Founders</p>
+                        <p class="tab-links" onclick="opentab('Education')">Clients</p>
+                    </div>
+                    <div class="tab-contents active-tab" id="skills">
+                        <ul>
+                            <li><span>UI/UX</span><br>Desgining web/App interface</li>
+                            <li><span>Web Devlopment</span><br>Web app Devlopment</li>
+                            <li><span>Graphic Desgining</span><br>Desgining on Canva</li>
+                        </ul>
+                    </div>
+                    <div class="tab-contents" id="experience">
+                        <ul>
+                            <li><span>CEO</span><br>Gopabandhu Gadanayak</li>
+                            <li><span>CMO</span><br>Sanjeep Rout</li>
+                            <li><span>CMO</span><br>Aniket Giri</li>
+                        </ul>
+                    </div>
+                    <div class="tab-contents" id="Education">
+                        <ul>
+                            <li><span>2016</span><br>Reliance</li>
+                            <li><span>2021</span><br>Adani</li>
+                            <li><span>2022</span><br>TATA</li>
+                            <li><span>2023</span><br>Tesla</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="services">
+        <div class="container">
+            <h1 class="sub-title">Our Services</h1>
+            <div class="services-list">
+                <div>
+                    <h2>Web Desgin</h2>
+                    <p>No matter if you need a static website for a small budget or a dynamic website with unlimited pages, we have a solution for everyone We offer onsite
+                         support and basic training for the website which we do for you. We always recommend going for dynamic website package as it will be easier for you to maintain and manage yourself</p>
+                </div>
+                <div>
+                    <h2>UI/UX Desgin</h2>
+                    <p>CMS Driven Websites help you achieve your requirements with a quick turnaround time, and quicker updates.
+                         No matter what kind of update you want to do to your website, you can do it easily.</p>
+                </div>
+                <div>
+                    <h2>App Desgin</h2>
+                    <p>We have a strong team of expert iOS developers who deliver high-performance iOS applications and on time
+                        We develop using leading frameworks like Xamarin, React Native, Flutter etc. using which you have to build only one app and deploy it to 
+                        all the platforms with almost same code thereby saving lot of time and cost.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="protfolio">
+        <div class="container">
+            <h1 class="sub-title">Our Work</h1>
+            <div class="work-list">
+                <div class="work">
+                    <img src="images/work-1.png" alt="work">
+                    <div class="layer">
+                        <a target="_blank" href="https://gopabandhugadanayak.github.io/spotifymusicplayer/"><h3 style="color: #fff;">spotify music player</h3></a>
+                        <p>A simple music player made using Html css and javascript.its available only in offline mode
+                        </p>
+                    </div>
+                </div>
+                <div class="work">
+                    <img src="images/work-2.png" alt="work">
+                    <div class="layer">
+                        <a target="_blank" href="https://imsanjeep33.github.io/weather/"><h3 style="color: #ffffff;">weather app</h3></a>
+                        <p>A Simple weather app using html css and javascript using the help of bootstrap and rapid api</p>
+                    </div>
+                </div>
+                <div class="work">
+                    <img src="images/work-3.png" alt="work">
+                    <div class="layer">
+                        <a target="_blank" href="https://imsanjeep33.github.io/tic-tac/"><h3 style="color: #fff;">tic tac toe</h3></a>
+                        <p>A Tic Tac toe game using javascript .</p>
+                    </div>
+                </div>
+            </div>
+            <a href="https://github.com/gopabandhugadanayak" class="btn">See More</a>
+        </div>
+    </div>
+
+
+    <div id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="contact-left">
+                    <h1 class="sub-title">Contact us</h1>
+                    <p><i class="fa-solid fa-paper-plane"></i>peakyblinder@gmail.com</p>
+                    <p><i class="fa-solid fa-square-phone"></i>766598754</p>
+                    <div class="social-icons">
+                        <a target="_blank" href="https://www.facebook.com/profile.php?id=100010696173106"><i class="fa-brands fa-facebook"></i></a>
+                        <a target="_blank" href="https://twitter.com/GOPABANDHU333"><i class="fa-brands fa-twitter"></i></a>
+                        <a target="_blank" href=""><i class="fa-brands fa-instagram"></i></a>
+                        <a target="_blank" href="https://www.linkedin.com/in/sanjeep-rout-160952200/"><i class="fa-brands fa-linkedin"></i></a>
+
+                    </div>
+                    <a href="images/my-cv.pdf" download class="btn btn2">Download </a>
+                </div>
+                <div class="contact-right">
+                    <form name="submit-to-google-sheet">
+                        <input type="text" name="Name" placeholder="Your Name" required>
+                        <input type="email" name="email" placeholder="Your email" required>
+                        <textarea name="message" rows="6" placeholder="Your message"></textarea>
+                        <button type="submit" class="btn btn2">submit</button>
+                    </form>
+                    <span id="msg"></span>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>copyright @PeakyBlinders 2022</p>
+        </div>
+    </div>
+    <script>
+        var tablinks = document.getElementsByClassName("tab-links");
+        var tabcontents = document.getElementsByClassName("tab-contents");
+        function opentab(tabname) {
+            for (tablink of tablinks) {
+                tablink.classList.remove("active-link")
+            }
+            for (tabcontent of tabcontents) {
+                tabcontent.classList.remove("active-tab")
+            }
+            event.currentTarget.classList.add("active-link");
+            document.getElementById(tabname).classList.add("active-tab")
+        }
+    </script>
+    <script>
+        
+        const scriptURL = '<https://script.google.com/macros/s/AKfycbwlsYuMBL5RaJ9QeizkuvzOb_cKZlEhkJ2RaOdUHUBpSufOflNZAACbSPnMx35IkHgqrw/exec>'
+        const form = document.forms['submit-to-google-sheet']
+        const msg = document.getElementById("msg")
+
+        form.addEventListener('submit', e => {
+            e.preventDefault()
+            fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+                .then(response => {
+                    msg.innerHTML = "Message sent sucessfully"
+                    setTimeout(function () {
+                        msg.innerHTML = ""
+                    }, 5000)
+                    form.reset
+                })
+                .catch(error => console.error('Error!', error.message))
+        })
+    </script>
+
+</body>
+
+</html>
